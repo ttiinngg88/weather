@@ -1,0 +1,5 @@
+<view>
+    <view bindtap="viewCity" data-city="广州">广州</view>
+    <view bindtap="viewCity" data-city="上海">上海</view>
+    <view bindtap="viewCity" data-city="杭州">杭州</view>
+</view>

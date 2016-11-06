@@ -1,0 +1,31 @@
+{
+  "pages":[
+    "pages/city/city",
+    "pages/list/list",
+    "pages/search/search"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "list": [{
+      "pagePath": "pages/list/list",
+      "text": "城市列表",
+      "iconPath": "iconPath",
+      "selectedIconPath": "selectedIconPath"
+    },{
+      "pagePath": "pages/city/city",
+      "text": "当地天气",
+      "iconPath": "iconPath",
+      "selectedIconPath": "selectedIconPath"
+    },{
+      "pagePath": "pages/search/search",
+      "text": "搜索",
+      "iconPath": "iconPath",
+      "selectedIconPath": "selectedIconPath"
+    }]
+  }
+}
