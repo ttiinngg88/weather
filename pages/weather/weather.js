@@ -37,7 +37,22 @@ Page({
     },
 
     loadWeather: function (cityName) {
-
+        const that = this;
+        wx.request({
+            url: 'http://wthrcdn.etouch.cn/weather_mini?city='+cityName,
+            data: {},
+            header: {
+                'Content-Type': 'application/json'
+            },
+            success: function (res) {
+                let weather = res.data.data;
+                console.log(res)
+                that.setData({
+                    weather:weather
+                })
+                console.log(that.data)
+            }
+        })
     },
 
     onLoad: function (option) {
