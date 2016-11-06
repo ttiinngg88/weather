@@ -3,7 +3,7 @@ Page({
     data: {
         cityName: '', 
         temprature: 0,
-        weather: ''
+        weather: {}
     },
     onLoad: function (option) {
         // 第一步，先获得城市名
@@ -21,12 +21,24 @@ Page({
                     var latitude = res.latitude
                     var longitude = res.longitude
                     // 根据经纬度去获取城市名  
+                    wx.request({
+                      url: 'http://api.map.baidu.com/geocoder/v2/?ak=LIkYxythH2yrgUE42GfgtkY56cLtTb51&location='+latitude+','+longitude+'&output=json&pois=0',
+                      data: {},
+                      header: {
+                          'Content-Type': 'application/json'
+                      }, // 设置请求的 header
+                      success: function(res){
+                          cityName = res.data.result.addressComponent.city.replace('市','')
+                          console.log(cityName)
+                        // success
+                      }
+                    })
                 }
             })
 
         }
         this.setData({cityName: cityName})
-        // 第二步获得城市名之后，从天气API获取teampreature和weather的值
+        // 第二步，获得城市名之后，从天气API获取teampreature和weather的值
     },
     onReady: function() {
         wx.setNavigationBarTitle({
