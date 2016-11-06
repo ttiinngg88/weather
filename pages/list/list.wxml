@@ -1,5 +1,13 @@
 <view>
-    <view bindtap="viewCity" data-city="广州">广州</view>
-    <view bindtap="viewCity" data-city="上海">上海</view>
-    <view bindtap="viewCity" data-city="杭州">杭州</view>
+    <view>
+        <form catchsubmit="addCity">
+            <input name="city" type="text" class="city-input" placeholder="添加城市" />
+            <button class="city-submit" form-type="submit">添加</button>
+        </form>
+    </view>
+    <view class="city-item" wx:for="{{cities}}" wx:for-item="city">
+        <view class="city-name" bindtap="viewCity" data-city="{{city}}">{{city}}</view>
+        <view class="city-name">{{weather.city.condition}}</view>
+        <view class="close-btn" bindtap="deleteCity" data-city="{{city}}">X</view>
+    </view>
 </view>

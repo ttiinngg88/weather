@@ -1,0 +1,29 @@
+page {
+    background: #fff;
+}
+
+.city-input {
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 2px;
+    width: 70%;
+    float: left;
+    height: 40px;
+}
+
+.city-submit {
+    float: left;
+    width: 28%;
+}
+
+.city-item {
+    clear: both;
+}
+
+.city-name{
+    float: left;
+}
+
+.close-btn {
+    float: right;
+}

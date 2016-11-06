@@ -1,0 +1,3 @@
+<view class="city-name">{{cityName}}</view>
+<view class="temprature">{{temprature}}°C</view>
+<view class="condition">{{condition}}</view>

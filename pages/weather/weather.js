@@ -3,7 +3,7 @@ Page({
     data: {
         cityName: '', 
         temprature: 0,
-        weather: {}
+        condition: ''
     },
 
     loadCity: function () {
@@ -45,10 +45,11 @@ Page({
                 'Content-Type': 'application/json'
             },
             success: function (res) {
-                let weather = res.data.data;
+                const weather = res.data.data
                 console.log(res)
                 that.setData({
-                    weather:weather
+                    temprature:weather.wendu, 
+                    condition:weather.forecast[0].type
                 })
                 console.log(that.data)
             }

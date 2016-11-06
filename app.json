@@ -1,8 +1,7 @@
 {
   "pages":[
-    "pages/weather/weather",
     "pages/list/list",
-    "pages/search/search"
+    "pages/weather/weather"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -19,11 +18,6 @@
     },{
       "pagePath": "pages/weather/weather",
       "text": "天气",
-      "iconPath": "iconPath",
-      "selectedIconPath": "selectedIconPath"
-    },{
-      "pagePath": "pages/search/search",
-      "text": "搜索",
       "iconPath": "iconPath",
       "selectedIconPath": "selectedIconPath"
     }]
