@@ -20,8 +20,7 @@ Page({
                 success: function(res) {
                     var latitude = res.latitude
                     var longitude = res.longitude
-                    // 根据经纬度去获取城市名
-                    
+                    // 根据经纬度去获取城市名  
                 }
             })
 
