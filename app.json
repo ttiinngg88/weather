@@ -1,6 +1,6 @@
 {
   "pages":[
-    "pages/city/city",
+    "pages/weather/weather",
     "pages/list/list",
     "pages/search/search"
   ],
@@ -13,12 +13,12 @@
   "tabBar": {
     "list": [{
       "pagePath": "pages/list/list",
-      "text": "城市列表",
+      "text": "城市",
       "iconPath": "iconPath",
       "selectedIconPath": "selectedIconPath"
     },{
-      "pagePath": "pages/city/city",
-      "text": "当地天气",
+      "pagePath": "pages/weather/weather",
+      "text": "天气",
       "iconPath": "iconPath",
       "selectedIconPath": "selectedIconPath"
     },{
