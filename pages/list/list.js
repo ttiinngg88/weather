@@ -7,16 +7,26 @@ Page({
         console.log(e)
         const city = e.currentTarget.dataset.city
         wx.navigateTo({
-          url: '../weather/weather?cityName=' + city // 引向city页面，并把cityName变量传给city页面
+          url: '../weather/weather?city=' + city // 引向city页面，并把city变量传给city页面
         })
     },
     addCity: function(e) {
         console.log(e)
         var that = this
         // 获得用户输入的城市名
-        var cityName = e.detail.value.city
+        var city = e.detail.value.city
         // 如果用户输入的城市名为空，直接返回
-        if (!cityName) {
+        if (!city) {
+            return
+        }
+
+        // 因为微信限制了最多只能同时发送5条网络请求，所以限制最多只能添加5个城市
+        var cities = that.data.cities
+        if (cities.length > 4) {
+            wx.showModal({
+                title: '最多只能添加5个城市',
+                showCancel: false
+            })
             return
         }
 
@@ -29,7 +39,7 @@ Page({
 
         // 去查询这个城市的天气，如果查询失败则告诉用户，城市名有误
         wx.request({
-            url: 'http://wthrcdn.etouch.cn/weather_mini?city='+cityName,
+            url: 'http://wthrcdn.etouch.cn/weather_mini?city='+city,
             data: {},
             header: {
                 'Content-Type': 'application/json'
@@ -48,16 +58,23 @@ Page({
                     })
                 } else {
                     // 查询成功,把城市添加进来
-                    var cities = that.data.cities
-                    console.log(cities)
-                    if (cities.indexOf(cityName) > -1) {
+                    
+                    if (cities.indexOf(city) > -1) {
                         return
                     }
-                    cities.push(cityName)
+                    cities.push(city)
                     console.log(cities)
+                    const weather = res.data.data
+                    const cityWeathers = that.data.cityWeathers
+                    cityWeathers[city] = {
+                        temprature:weather.wendu, 
+                        condition:weather.forecast[0].type
+                    }
                     that.setData({
+                        cityWeathers: cityWeathers,
                         cities: cities
                     })
+                    // 异步保存城市列表到本地存储
                     wx.setStorage({
                       key: 'cities',
                       data: cities
@@ -77,13 +94,14 @@ Page({
             },
             success: function (res) {
                 const weather = res.data.data
-                that.setData({
-                    
-                })
-                return {
+                const cityWeathers = that.data.cityWeathers
+                cityWeathers[city] = {
                     temprature:weather.wendu, 
                     condition:weather.forecast[0].type
                 }
+                that.setData({
+                    cityWeathers: cityWeathers
+                })
             }
         })
     },

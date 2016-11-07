@@ -6,21 +6,29 @@ page {
     background: #fff;
     border: 1px solid #ccc;
     padding: 2px;
-    width: 70%;
+    width: 85%;
     float: left;
     height: 40px;
 }
 
 .city-submit {
     float: left;
-    width: 28%;
+    width: 13%;
 }
 
 .city-item {
     clear: both;
 }
 
-.city-name{
+.city-name {
+    float: left;
+}
+
+.city-temprature {
+    float: left;
+}
+
+.city-condition {
     float: left;
 }
 

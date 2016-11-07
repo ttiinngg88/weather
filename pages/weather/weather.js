@@ -1,7 +1,7 @@
 Page({
     // data 就是要渲染到视图层的东西：本地城市的天气状况，从天气API获取
     data: {
-        cityName: '', 
+        city: '', 
         temprature: 0,
         condition: ''
     },
@@ -21,25 +21,25 @@ Page({
                         'Content-Type': 'application/json'
                     }, // 设置请求的 header
                     success: function(res){
-                        var cityName = res.data.result.addressComponent.city.replace('市','')
+                        var city = res.data.result.addressComponent.city.replace('市','')
                         wx.setNavigationBarTitle({
-                            title: cityName
+                            title: city
                         })
                         that.setData({
-                            cityName: cityName
+                            city: city
                         })
                         // 通过城市名获得天气
-                        that.loadWeather(cityName)
+                        that.loadWeather(city)
                     }
                 })
             }
         })
     },
 
-    loadWeather: function (cityName) {
+    loadWeather: function (city) {
         const that = this;
         wx.request({
-            url: 'http://wthrcdn.etouch.cn/weather_mini?city='+cityName,
+            url: 'http://wthrcdn.etouch.cn/weather_mini?city='+city,
             data: {},
             header: {
                 'Content-Type': 'application/json'
@@ -58,23 +58,23 @@ Page({
 
     onLoad: function (option) {
         // 第一步，先获得城市名
-        // option对象包含从别的页面传进的参数，所以在这里option包含从list页面传来的cityName属性
+        // option对象包含从别的页面传进的参数，所以在这里option包含从list页面传来的city属性
         console.log(option)
         // 如果是从list页面过来的，用户看指定城市的天气
-        var cityName = option.cityName 
-        this.setData({cityName: cityName})
+        var city = option.city 
+        this.setData({city: city})
         // 通过城市名获得天气
-        this.loadWeather(cityName)
+        this.loadWeather(city)
         
-        // 如果没有cityName传递进来，那么通过API来获取cityName
-        if (!cityName){
+        // 如果没有city传递进来，那么通过API来获取city
+        if (!city){
             // 通过位置信息去获取当前城市及其天气
             this.loadCity()
         }
     },
     onReady: function() {
         wx.setNavigationBarTitle({
-          title: this.data.cityName
+          title: this.data.city
         })
     }
 })
